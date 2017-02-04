@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" media="screen" href="/style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <ul id="messages"></ul>
+    <div id="user-online">
+        <ul v-for="user in users">
+            {{ user }}
+        </ul>
+    </div>
+    <div id="footer">
+        <p></p>
+        <form action="">
+            <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+    </div>
+    <script src="/global.js"></script>
+</body>
+
+</html>
