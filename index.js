@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.use(static_files('/', __dirname));
+app.use(static_files('/static', __dirname + '/static'));
 
 
 io.on('connection', function (socket) {
@@ -59,5 +59,5 @@ io.on('connection', function (socket) {
 
 
 http.listen(3000, function () {
-    console.log('listening on *:3000');
+    console.log('listening on port:3000');
 });

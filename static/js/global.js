@@ -1,8 +1,4 @@
 var socket = io();
-var textarea = $('#m');
-var isTypingArea = $('#footer p');
-var lastTypedTime = new Date(0);
-var typingDelayMillis = 2000;
 
 var user = {
     'name': '',
@@ -11,28 +7,10 @@ var user = {
 
 var user_list = new Vue({
     el: '#user-online',
-    data:{
+    data: {
         users: []
-    } 
-});
-
-// {user} is typing functionality
-function refreshTypingStatus() {
-    if (!textarea.is(':focus') || textarea.val() === '' || new Date().getTime() - lastTypedTime.getTime() >
-        typingDelayMillis) {
-        socket.emit('status: not typing');
-    } else {
-        socket.emit('status: is typing');
     }
-}
-
-function updateLastTypedTime() {
-    lastTypedTime = new Date();
-}
-
-setInterval(refreshTypingStatus, 300);
-textarea.keypress(updateLastTypedTime);
-textarea.blur(updateLastTypedTime);
+});
 
 // send msgs
 $('form').submit(function () {
@@ -75,9 +53,11 @@ socket.on('connect message', function (userID) {
 });
 
 socket.on('disconnect message', function (userID) {
-    $('#messages').append($('<li>').text(`${userID} disconnected.`));
+    if (userID.trim()) {
+        $('#messages').append($('<li>').text(`${userID.trim()} disconnected.`));
+    }
 });
 
 socket.on('update user list', function (users) {
-    user_list.users = users
+    user_list.users = users;
 });
