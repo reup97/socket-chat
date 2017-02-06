@@ -10,19 +10,20 @@
 </head>
 
 <body>
-    <ul id="messages"></ul>
-    <div id="user-online">
-        <ul v-for="user in users">
-            {{ user }}
-        </ul>
+    <div class="container">
+        <ul id="messages"></ul>
+        <div id="user-online">
+            <ul v-for="user in users">
+                {{ user }}
+            </ul>
+        </div>
+        <div id="footer">
+            <p></p>
+            <form action="">
+                <input id="m" autocomplete="off" /><button>Send</button>
+            </form>
+        </div>
     </div>
-    <div id="footer">
-        <p></p>
-        <form action="">
-            <input id="m" autocomplete="off" /><button>Send</button>
-        </form>
-    </div>
-
     <script src="/static/js/refresh_typing_status.js"></script>
     <script src="/static/js/global.js"></script>
 </body>
